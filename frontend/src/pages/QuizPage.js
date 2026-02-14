@@ -82,6 +82,17 @@ const QuizPage = () => {
   const currentQuiz = selectedCategory ? quizData.find(q => q.category === selectedCategory) : null;
   const question = currentQuiz?.questions[currentQuestion];
 
+  useEffect(() => {
+    if (quizComplete) {
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.5 },
+        colors: ['#FF9F1C', '#2EC4B6', '#FFBF69', '#FF99C8', '#A9DEF9']
+      });
+    }
+  }, [quizComplete]);
+
   const handleAnswer = (index) => {
     if (selectedAnswer !== null) return;
 
