@@ -1,34 +1,161 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+.App {
+  min-height: 100vh;
+  background: #F0F9FF;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.category-card {
+  position: relative;
+  overflow: hidden;
+  background: white;
+  border-radius: 1.5rem;
+  border: 4px solid white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  cursor: pointer;
+  height: 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  gap: 1rem;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.category-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-.App-link {
-    color: #61dafb;
+.category-card:active {
+  transform: translateY(-2px) scale(0.98);
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.alphabet-card {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 0 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+  border-bottom: 8px solid;
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+.alphabet-card:hover {
+  transform: scale(1.1) rotate(-2deg);
+}
+
+.alphabet-card:active {
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.big-button {
+  background: #FF9F1C;
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  box-shadow: 0 6px 0 0 #CC7A00;
+  transition: all 0.2s ease-out;
+  border: none;
+  cursor: pointer;
+  font-family: "Fredoka", cursive;
+}
+
+.big-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 0 #CC7A00;
+}
+
+.big-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 0 #CC7A00;
+}
+
+.quiz-option {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 4px solid #E0E0E0;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.quiz-option:hover {
+  border-color: #FF9F1C;
+  transform: scale(1.02);
+}
+
+.quiz-option.correct {
+  background: #A7C957;
+  border-color: #7FA04B;
+  color: white;
+}
+
+.quiz-option.incorrect {
+  background: #EF476F;
+  border-color: #C93659;
+  color: white;
+}
+
+.game-card {
+  aspect-ratio: 3/4;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backface-visibility: hidden;
+}
+
+.game-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.game-card.matched {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
 }
