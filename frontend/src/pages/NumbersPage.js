@@ -54,7 +54,7 @@ const NumbersPage = () => {
             ))}
           </div>
           <button
-            onClick={() => speak(`Number ${selectedNumber.number}`)}
+            onClick={() => speakText(`Number ${selectedNumber.number}`)}
             className="big-button flex items-center gap-2 mx-auto"
             data-testid="speak-number-button"
           >
@@ -80,6 +80,12 @@ const NumbersPage = () => {
           </div>
         ))}
       </div>
+
+      <MascotHelper 
+        message="Count with me! Tap any number to learn!"
+        show={showMascot && !selectedNumber}
+        onClose={() => setShowMascot(false)}
+      />
     </div>
   );
 };
