@@ -77,33 +77,10 @@ const QuizPage = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const [quizComplete, setQuizComplete] = useState(false);
+  const [showMascot, setShowMascot] = useState(true);
 
   const currentQuiz = selectedCategory ? quizData.find(q => q.category === selectedCategory) : null;
   const question = currentQuiz?.questions[currentQuestion];
-
-  const playSound = (isCorrect) => {
-    const soundEnabled = JSON.parse(localStorage.getItem('soundEnabled') || 'true');
-    if (!soundEnabled) return;
-
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-
-    if (isCorrect) {
-      oscillator.frequency.value = 523.25;
-      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-      oscillator.start(audioContext.currentTime);
-      oscillator.stop(audioContext.currentTime + 0.2);
-    } else {
-      oscillator.frequency.value = 200;
-      gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-      oscillator.start(audioContext.currentTime);
-      oscillator.stop(audioContext.currentTime + 0.3);
-    }
-  };
 
   const handleAnswer = (index) => {
     if (selectedAnswer !== null) return;
@@ -113,7 +90,8 @@ const QuizPage = () => {
     
     if (isCorrect) {
       setScore(score + 1);
-      playSound(true);
+      playSuccessSound();
+      speakFeedback(true);
       confetti({
         particleCount: 100,
         spread: 70,
@@ -121,7 +99,8 @@ const QuizPage = () => {
       });
       window.dispatchEvent(new CustomEvent('starEarned', { detail: 5 }));
     } else {
-      playSound(false);
+      playErrorSound();
+      speakFeedback(false);
     }
 
     setShowResult(true);
