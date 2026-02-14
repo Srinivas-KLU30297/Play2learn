@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import confetti from "canvas-confetti";
-import { Star, ChevronRight } from "lucide-react";
+import { Star, ChevronRight, Trophy } from "lucide-react";
+import MascotHelper from "@/components/MascotHelper";
+import { playSuccessSound, playErrorSound, speakFeedback } from "@/utils/audioUtils";
 
 const quizData = [
   {
