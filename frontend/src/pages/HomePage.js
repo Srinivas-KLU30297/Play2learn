@@ -33,7 +33,7 @@ const categories = [
     color: 'kid-yellow',
     image: 'https://images.unsplash.com/photo-1573691863165-14bf17020fd7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjV8MHwxfHNlYXJjaHwyfHwzZCUyMHJlbmRlciUyMGNvbG9yZnVsJTIwcXVlc3Rpb24lMjBtYXJrJTIwZm9yJTIwa2lkc3xlbnwwfHx8fDE3NzEwOTc1OTd8MA&ixlib=rb-4.1.0&q=85',
     path: '/quiz'
-  },
+  },,
   {
     id: 'games',
     title: 'Games',
