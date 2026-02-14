@@ -35,23 +35,12 @@ const alphabetData = [
 
 const AlphabetsPage = () => {
   const [selectedLetter, setSelectedLetter] = useState(null);
-
-  const speak = (text) => {
-    const soundEnabled = JSON.parse(localStorage.getItem('soundEnabled') || 'true');
-    if (!soundEnabled) return;
-
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.8;
-      utterance.pitch = 1.2;
-      window.speechSynthesis.speak(utterance);
-    }
-  };
+  const [showMascot, setShowMascot] = useState(true);
 
   const handleLetterClick = (item) => {
+    playClickSound();
     setSelectedLetter(item);
-    speak(`${item.letter} for ${item.object}`);
+    speakText(`${item.letter} for ${item.object}`);
     
     confetti({
       particleCount: 50,
