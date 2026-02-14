@@ -173,20 +173,11 @@ const QuizPage = () => {
   if (quizComplete) {
     const percentage = Math.round((score / currentQuiz.questions.length) * 100);
     
-    useEffect(() => {
-      confetti({
-        particleCount: 200,
-        spread: 100,
-        origin: { y: 0.5 },
-        colors: ['#FF9F1C', '#2EC4B6', '#FFBF69', '#FF99C8', '#A9DEF9']
-      });
-    }, []);
-    
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-3xl shadow-2xl p-12 text-center animate-bounce-in" data-testid="quiz-complete">
           <div className="text-8xl mb-6">
-            {percentage >= 80 ? '\ud83c\udf89' : percentage >= 50 ? '\ud83d\ude0a' : '\ud83d\udcaa'}
+            {percentage >= 80 ? '🎉' : percentage >= 50 ? '😊' : '💪'}
           </div>
           <Trophy className="w-24 h-24 mx-auto mb-4 text-kid-yellow" />
           <h2 className="text-5xl font-bold text-kid-orange mb-4" style={{ fontFamily: 'Fredoka, cursive' }}>
