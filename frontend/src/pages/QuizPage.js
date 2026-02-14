@@ -236,6 +236,12 @@ const QuizPage = () => {
           </div>
         )}
       </div>
+      
+      <MascotHelper 
+        message="Choose the correct answer and earn stars!"
+        show={showMascot && selectedCategory && !showResult}
+        onClose={() => setShowMascot(false)}
+      />
     </div>
   );
 };
