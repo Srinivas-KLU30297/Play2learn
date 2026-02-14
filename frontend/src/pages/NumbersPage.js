@@ -1,6 +1,8 @@
 import { useState } from "react";
 import confetti from "canvas-confetti";
 import { Volume2 } from "lucide-react";
+import MascotHelper from "@/components/MascotHelper";
+import { playClickSound, playSuccessSound, speakText } from "@/utils/audioUtils";
 
 const numberData = Array.from({ length: 20 }, (_, i) => {
   const number = i + 1;
