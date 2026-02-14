@@ -70,7 +70,7 @@ const AlphabetsPage = () => {
             {selectedLetter.letter} for {selectedLetter.object}
           </h2>
           <button
-            onClick={() => speak(`${selectedLetter.letter} for ${selectedLetter.object}`)}
+            onClick={() => speakText(`${selectedLetter.letter} for ${selectedLetter.object}`)}
             className="big-button flex items-center gap-2 mx-auto"
             data-testid="speak-button"
           >
@@ -96,6 +96,12 @@ const AlphabetsPage = () => {
           </div>
         ))}
       </div>
+
+      <MascotHelper 
+        message="Tap any letter to hear how it sounds!"
+        show={showMascot && !selectedLetter}
+        onClose={() => setShowMascot(false)}
+      />
     </div>
   );
 };
