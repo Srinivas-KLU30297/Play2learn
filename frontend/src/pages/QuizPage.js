@@ -172,7 +172,37 @@ const QuizPage = () => {
     }, []);
     
     return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8\">\n        <div className=\"bg-white rounded-3xl shadow-2xl p-12 text-center animate-bounce-in\" data-testid=\"quiz-complete\">\n          <div className=\"text-8xl mb-6\">\n            {percentage >= 80 ? '\ud83c\udf89' : percentage >= 50 ? '\ud83d\ude0a' : '\ud83d\udcaa'}\n          </div>\n          <Trophy className=\"w-24 h-24 mx-auto mb-4 text-kid-yellow\" />\n          <h2 className=\"text-5xl font-bold text-kid-orange mb-4\" style={{ fontFamily: 'Fredoka, cursive' }}>\n            {percentage >= 80 ? 'Amazing Work!' : percentage >= 50 ? 'Great Job!' : 'Keep Trying!'}\n          </h2>\n          <p className=\"text-3xl font-semibold text-gray-700 mb-4\">\n            You scored {score} out of {currentQuiz.questions.length}!\n          </p>\n          <div className=\"flex gap-2 justify-center mb-8\">\n            {Array.from({ length: 3 }, (_, i) => (\n              <Star \n                key={i} \n                className={`w-12 h-12 ${\n                  percentage >= (i + 1) * 33 ? 'fill-kid-yellow text-kid-yellow' : 'text-gray-300'\n                }`}\n              />\n            ))}\n          </div>\n          <div className=\"flex gap-4 justify-center\">\n            <button onClick={resetQuiz} className=\"big-button\" data-testid=\"back-to-categories\">\n              Try Another Quiz\n            </button>\n          </div>\n        </div>\n      </div>\n    );\n  }
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="bg-white rounded-3xl shadow-2xl p-12 text-center animate-bounce-in" data-testid="quiz-complete">
+          <div className="text-8xl mb-6">
+            {percentage >= 80 ? '\ud83c\udf89' : percentage >= 50 ? '\ud83d\ude0a' : '\ud83d\udcaa'}
+          </div>
+          <Trophy className="w-24 h-24 mx-auto mb-4 text-kid-yellow" />
+          <h2 className="text-5xl font-bold text-kid-orange mb-4" style={{ fontFamily: 'Fredoka, cursive' }}>
+            {percentage >= 80 ? 'Amazing Work!' : percentage >= 50 ? 'Great Job!' : 'Keep Trying!'}
+          </h2>
+          <p className="text-3xl font-semibold text-gray-700 mb-4">
+            You scored {score} out of {currentQuiz.questions.length}!
+          </p>
+          <div className="flex gap-2 justify-center mb-8">
+            {Array.from({ length: 3 }, (_, i) => (
+              <Star 
+                key={i} 
+                className={`w-12 h-12 ${
+                  percentage >= (i + 1) * 33 ? 'fill-kid-yellow text-kid-yellow' : 'text-gray-300'
+                }`}
+              />
+            ))}
+          </div>
+          <div className="flex gap-4 justify-center">
+            <button onClick={resetQuiz} className="big-button" data-testid="back-to-categories">
+              Try Another Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
