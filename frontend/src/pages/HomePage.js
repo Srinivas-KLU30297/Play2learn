@@ -27,7 +27,7 @@ const categories = [
     path: '/numbers'
   },
   {
-    id: 'quizzes',
+    id: 'quiz',
     title: 'Quizzes',
     emoji: '❓',
     color: 'kid-yellow',
