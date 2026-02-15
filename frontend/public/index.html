@@ -25,16 +25,35 @@
         <script>window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);</script>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
         <script>
-            // Hide the Emergent badge after page loads
-            window.addEventListener('load', function() {
-                setTimeout(function() {
-                    const badge = document.getElementById('emergent-badge');
-                    if (badge) {
-                        badge.style.display = 'none';
-                        badge.remove();
-                    }
-                }, 100);
+            // Remove Emergent badge immediately and continuously
+            function removeBadge() {
+                const badge = document.getElementById('emergent-badge');
+                if (badge) {
+                    badge.remove();
+                }
+            }
+            
+            // Run immediately
+            removeBadge();
+            
+            // Run on DOM ready
+            document.addEventListener('DOMContentLoaded', removeBadge);
+            
+            // Run on load
+            window.addEventListener('load', removeBadge);
+            
+            // Watch for badge being added dynamically
+            const observer = new MutationObserver(function(mutations) {
+                removeBadge();
             });
+            
+            // Start observing after a short delay
+            setTimeout(function() {
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            }, 100);
         </script>
         <!--
         These two scripts have been added for the Visual Edits, please do not edit or remove them
