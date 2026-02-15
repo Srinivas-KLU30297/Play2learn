@@ -22,38 +22,61 @@
         Learn how to configure a non-root public URL by running `npm run build`.
         -->
         <title>Play2Learn | Educational Games for Kids</title>
+        <style>
+            /* Force hide Emergent badge */
+            #emergent-badge,
+            a[href*="emergent.sh"],
+            a[href*="utm_source=emergent-badge"] {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                pointer-events: none !important;
+                position: absolute !important;
+                left: -9999px !important;
+            }
+        </style>
         <script>window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);</script>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
         <script>
-            // Remove Emergent badge immediately and continuously
-            function removeBadge() {
-                const badge = document.getElementById('emergent-badge');
-                if (badge) {
-                    badge.remove();
+            // Aggressive badge removal
+            (function() {
+                function removeBadge() {
+                    // Remove by ID
+                    const badgeById = document.getElementById('emergent-badge');
+                    if (badgeById) badgeById.remove();
+                    
+                    // Remove by href
+                    const badges = document.querySelectorAll('a[href*="emergent.sh"], a[href*="utm_source=emergent-badge"]');
+                    badges.forEach(badge => badge.remove());
+                    
+                    // Remove by text content
+                    const allLinks = document.querySelectorAll('a');
+                    allLinks.forEach(link => {
+                        if (link.textContent.includes('Made with Emergent') || 
+                            link.textContent.includes('Emergent')) {
+                            link.remove();
+                        }
+                    });
                 }
-            }
-            
-            // Run immediately
-            removeBadge();
-            
-            // Run on DOM ready
-            document.addEventListener('DOMContentLoaded', removeBadge);
-            
-            // Run on load
-            window.addEventListener('load', removeBadge);
-            
-            // Watch for badge being added dynamically
-            const observer = new MutationObserver(function(mutations) {
+                
+                // Run immediately and repeatedly
                 removeBadge();
-            });
-            
-            // Start observing after a short delay
-            setTimeout(function() {
-                observer.observe(document.body, {
-                    childList: true,
-                    subtree: true
-                });
-            }, 100);
+                setInterval(removeBadge, 100);
+                
+                // Run on events
+                document.addEventListener('DOMContentLoaded', removeBadge);
+                window.addEventListener('load', removeBadge);
+                
+                // Watch for mutations
+                const observer = new MutationObserver(removeBadge);
+                setTimeout(function() {
+                    observer.observe(document.body || document.documentElement, {
+                        childList: true,
+                        subtree: true,
+                        attributes: true
+                    });
+                }, 50);
+            })();
         </script>
         <!--
         These two scripts have been added for the Visual Edits, please do not edit or remove them
